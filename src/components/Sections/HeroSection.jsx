@@ -131,7 +131,7 @@ const HeroSection = () => {
                                     {icon: FiGithub, href: 'https://github.com/VatsalRoy'},
                                     {icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/'},
                                     {icon: Mail, href: 'mailto:vatsalroy2429@gmail.com'},
-                                    {icon: FileUser, href: 'https://drive.google.com/file/d/1vRzV-mqwA2tIaamN1lCRxEy-6pAdL-Wm/view?usp=sharing'},
+                                    {icon: FileUser, href: 'https://drive.google.com/file/d/1cx222SwiVRMXvjkpCXrM0yftJJ-0UcYZ/view?usp=sharing'},
                                 ].map((social, index) => (
                                     <motion.a
                                     key={index}
@@ -230,8 +230,8 @@ const HeroSection = () => {
                             {[
                                 {icon: FiGithub, href: 'https://github.com/VatsalRoy'},
                                 {icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/'},
-                                {icon: FileUser, href: 'https://drive.google.com/file/d/1vRzV-mqwA2tIaamN1lCRxEy-6pAdL-Wm/view?usp=sharing'},
                                 {icon: Mail, href: 'mailto:vatsalroy2429@gmail.com'},
+                                {icon: FileUser, href: 'https://drive.google.com/file/d/1cx222SwiVRMXvjkpCXrM0yftJJ-0UcYZ/view?usp=sharing'},
                             ].map((social, index) => (
                                 <motion.a
                                 key={index}
