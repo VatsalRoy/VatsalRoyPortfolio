@@ -13,6 +13,7 @@ import {PROJECTS} from '../../utils/data';
 import ProjectCard from '../ProjectCard';
 import {containerVariants, itemVariants} from '../../utils/helper';
 
+
 const ProjectsSection = () => {
     const {isDrakeMode} = useTheme();
     const sectionRef = useRef(null);

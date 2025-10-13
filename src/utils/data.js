@@ -16,6 +16,9 @@ import{
     Phone,
     BrainCircuit,
     Frame,
+    BarChart3, 
+    Network,
+    FileUser
 } from "lucide-react";
 
 import{ FiGithub, FiLinkedin} from "react-icons/fi";
@@ -28,7 +31,7 @@ import PROJECT_IMG_5 from "../assets/images/project5.png";
 import PROJECT_IMG_6 from "../assets/images/project6.png";
 
 export const SKILLS_CATEGORY = [
-    {
+    /*{
         title: "Frontend",
         icon: Frame,
         description: "Create beautiful and responsive user interfaces",
@@ -40,31 +43,27 @@ export const SKILLS_CATEGORY = [
         {name: "CSS3", level: 95, color: "bg-purple-500"},
         {name: "Tailwind CSS", level: 70, color: "bg-orange-500"},
         ]
-    },
+    },*/
     {
-        title: "Backend",
-        icon: Server,
-        description: "Build robust server-side applications",
-        skills: [
-            {name: "Node.js", level: 90, color: "bg-green-500"},
-            {name: "Rest API", level: 85, color: "bg-purple-500"},
-            {name: "Python", level: 80, color: "bg-orange-500"},
-            {name: "FastAPI", level: 75, color: "bg-red-500"},
-            {name: "Flask", level: 70, color: "bg-yellow-500"},
-        ]
-    },
-    {
-        title: "Database",
+        title: "Data Manipulation & Processing",
         icon: Database,
-        description: "Manage and store data efficiently",
+        description: "Handle, clean, and transform large datasets efficiently",
         skills: [
-            {name: "MySQL", level: 90, color: "bg-green-500"},
-            {name: "NoSQL", level: 85, color: "bg-purple-500"},
-            {name: "Firebase", level: 80, color: "bg-orange-500"},
-            {name: "MongoDB", level: 75, color: "bg-red-500"},
-        ]
+          { name: "NumPy", level: 90, color: "bg-green-500" },
+          { name: "Pandas", level: 85, color: "bg-purple-500" },
+        ],
     },
     {
+        title: "Data Visualization & Analytics",
+        icon: BarChart3,
+        description: "Visualize and interpret data for model evaluation and insights",
+        skills: [
+          { name: "Plotly", level: 65, color: "bg-blue-500" },
+          { name: "Matplotlib", level: 60, color: "bg-green-500" },
+          { name: "Seaborn", level: 55, color: "bg-red-500" },
+        ],
+    },
+    /*{
         title: "AI/LLM and ML",
         icon: BrainCircuit,
         description: "Build and train AI/LLM and ML models",
@@ -81,6 +80,50 @@ export const SKILLS_CATEGORY = [
             {name: "LlamaIndex", level: 45, color: "bg-blue-500"},
             {name: "LangGraph", level: 40, color: "bg-green-500"},
             {name: "OpenAI API", level: 40, color: "bg-green-500"},
+        ]
+    },*/
+    {
+        title: "Machine Learning & AI",
+        icon: BrainCircuit,
+        description: "Develop and train machine learning and AI models",
+        skills: [
+          { name: "Scikit-learn", level: 80, color: "bg-orange-500" },
+          { name: "TensorFlow", level: 75, color: "bg-red-500" },
+          { name: "PyTorch", level: 70, color: "bg-yellow-500" },
+        ],
+      },
+      {
+        title: "LLM Frameworks & Integrations",
+        icon: Network,
+        description: "Build, connect, and deploy large language model applications",
+        skills: [
+          { name: "Langchain", level: 50, color: "bg-yellow-500" },
+          { name: "LlamaIndex", level: 45, color: "bg-blue-500" },
+          { name: "LangGraph", level: 40, color: "bg-green-500" },
+          { name: "OpenAI API", level: 40, color: "bg-red-500" },
+        ],
+      },
+      {
+        title: "Backend",
+        icon: Server,
+        description: "Build robust server-side applications",
+        skills: [
+            {name: "Python", level: 90, color: "bg-orange-500"},
+            {name: "Node.js", level: 80, color: "bg-green-500"},
+            {name: "Rest API", level: 85, color: "bg-purple-500"},
+            {name: "FastAPI", level: 75, color: "bg-red-500"},
+            {name: "Flask", level: 70, color: "bg-yellow-500"},
+        ]
+    },
+    {
+        title: "Database",
+        icon: Database,
+        description: "Manage and store data efficiently",
+        skills: [
+            {name: "MySQL", level: 90, color: "bg-green-500"},
+            {name: "NoSQL", level: 85, color: "bg-purple-500"},
+            {name: "Firebase", level: 80, color: "bg-orange-500"},
+            {name: "MongoDB", level: 75, color: "bg-red-500"},
         ]
     },
     
@@ -112,44 +155,56 @@ export const STATS = [
 ];
 
 export const PROJECTS = [
+
     {
         id: 1,
-        title: "Predicting CRISPR-Cas9 on-target efficiency",
-        description: "Implemented end-to-end ML pipeline with Python, scikit-learn, and XGBoost, achieving 42.1% R2 performance through systematic feature engineering of 15+ genomic sequence features. Developed and evaluated three machine learning algorithms (XGBoost, SVM, KNN) using comprehensive statistical analysis including PCA, correlation analysis, and model validation techniques (MSE, RMSE, MAE) with residual diagnostics for biological interpretability. Conducted advanced data preprocessing and visualization creating correlation heatmaps, feature importance rankings, and efficiency distribution analyses, discovering T-count as most predictive feature while validating established biological understanding of CRISPR mechanisms",
+        title: "Protein Lab: Enhanced ESMFold Protein Structure Predictor",
+        description: "Developed a Streamlit web application for enhanced protein structure prediction using the ESMFold model. The tool features interactive 3D visualization with multiple rendering styles and advanced structural analysis, including per-residue pLDDT confidence scores, identification of low-confidence regions, and calculation of key geometric properties (Radius of Gyration). Supports FASTA input for diverse sequence processing.",
         image: PROJECT_IMG_1,
         linkUrl: "#",
-        githubUrl: "#",
-        tags: ["Python","Machine Learning","Data Analysis","Data Visualization","Pandas","Scikit-learn","Matplotlib","Seaborn"],
-        category: "Machine Learning",
+        githubUrl: "https://github.com/VatsalRoy/protein-lab",
+        tags: ["Python", "Bioinformatics", "Protein Structure Prediction", "Streamlit", "ESMFold", "Data Visualization", "Numpy", "Pandas", "Plotly", "stmol", "py3Dmol"],
+        category: "Bioinformatics",
         featured: true,
     },
     {
-        id:2,
-        title: "Stock Price Prediction",
-        description: "Predicting stock prices using machine learning",
+        id: 2,
+        title: "Interactive ML Studio - Random Forest Regression",
+        description: "Developed an interactive, no-code Machine Learning web application using Streamlit. The platform allows users to upload CSV data, apply Random Forest Regression, and perform interactive parameter tuning for learning and general parameters. It provides real-time performance evaluation, prominently displaying R² Score and Mean Squared Error (MSE) for both training and test sets and utilizes Scikit-learn.",
         image: PROJECT_IMG_2,
         linkUrl: "#",
-        githubUrl: "#",
-        tags: ["Python","SageMaker","AWS","Machine Learning"],
+        githubUrl: "https://github.com/VatsalRoy/ml-studio",
+        tags: ["Python", "Machine Learning", "Data Science", "Streamlit", "Scikit-learn", "Random Forest", "Data Visualization", "Pandas", "Numpy"],
         category: "Machine Learning",
         featured: false,
     },
     {
         id: 3,
-        title: "Algo Trading Bot",
-        description: "Developed a stock trading bot using Python and the Yahoo Finance API to analyze stock data and make trading decisions.",
+        title: "Call Center Speech Analytics Pipeline",
+        description: "Built an end-to-end speech analytics pipeline to process call center recordings. Utilized the AssemblyAI SDK to transcribe audio, enabling speaker diarization (voice recognition) and sentiment analysis. Integrated the LeMUR LLM feature to intelligently infer and map generic speaker labels (A, B) to actual names present in the transcript. Performed Named Entity Recognition (NER) using spaCy to extract relevant entities from the dialogue. Visualized the results with interactive heatmaps generated by Altair, showing sentiment distribution across different speakers and dialogue sequences.",
         image: PROJECT_IMG_3,
         linkUrl: "#",
-        githubUrl: "#",
-        tags: ["Python","Data Analysis","Data Visualization","NumPy","Pandas","Seaborn"],
-        category: "Machine Learning",
+        githubUrl: "https://github.com/VatsalRoy/call-center-speech-analytics",
+        tags: ["Python", "AssemblyAI", "LeMUR", "Natural Language Processing", "Speech-to-Text", "Speaker Diarization", "Sentiment Analysis", "spaCy", "Data Visualization", "Altair", "Pandas"],
+        category: "Natural Language Processing",
         featured: false,
     },
     {
         id: 4,
+        title: "Multilingual Named Entity Recognition (NER) Studio",
+        description: "Developed a **multilingual Named Entity Recognition (NER) web application** using **Streamlit**. The tool performs sophisticated NLP analysis across **100+ languages** by integrating **Hugging Face**'s pre-trained **XLM-RoBERTa-large** model for sequence classification.",
+        image: PROJECT_IMG_4,
+        linkUrl: "#",
+        githubUrl: "https://github.com/VatsalRoy/multilingual-ai",
+        tags: ["Python", "Natural Language Processing", "Multilingual AI", "Hugging Face", "XLM-RoBERTa", "Named Entity Recognition", "Streamlit", "Transformers", "PyTorch"],
+        category: "Natural Language Processing",
+        featured: false,
+    },
+    {
+        id: 5,
         title: "WireframePro - Wireframe to Code",
         description: "Developed full-stack web platform automating wireframe-to-code conversion using OpenAI API with React/TypeScript frontend, Node.js/Express backend, and MySQL database. Integrated Stripe payment system for credit-based transactions and implemented real-time code preview with streaming AI responses. Designed database schema and RESTful APIs supporting authentication, content management, usage tracking, and multiframework code generation.",
-        image: PROJECT_IMG_4,
+        image: PROJECT_IMG_5,
         linkUrl: "#",
         githubUrl: "#",
         tags: ["React", "Tailwind CSS", "TypeScript","Node.js","Express","MySql","OpenAI"],
@@ -157,27 +212,16 @@ export const PROJECTS = [
         featured: true,
     },
     {
-        id: 5,
-        title: "InterviewGenie - AI Interview Prep",
-        description: "Developed AI-powered web application for interview preparation with generative AI for resume optimization, resulting in 35% improvement in user success rates. Built computer vision models for real-time facial analysis delivering confidence scoring and body language feedback, improving non-verbal communication skills by 40%. Implemented NLP system for speech pattern analysis with personalized recommendations, achieving 25% improvement in user articulation scores.",
-        image: PROJECT_IMG_5,
-        linkUrl: "#",
-        githubUrl: "#",
-        tags: ["Python","React", "TensorFlow","Hugging Face","OpenAI"],
-        category: "Backend",
-        featured: true,
-    },
-    {
         id: 6,
-        title: "QuickBuild - Resume Builder",
-        description: "ATS-ready resume generator for job matching.",
+        title: "Predicting CRISPR-Cas9 on-target efficiency",
+        description: "Implemented end-to-end ML pipeline with Python, scikit-learn, and XGBoost, achieving 42.1% R2 performance through systematic feature engineering of 15+ genomic sequence features. Developed and evaluated three machine learning algorithms (XGBoost, SVM, KNN) using comprehensive statistical analysis including PCA, correlation analysis, and model validation techniques (MSE, RMSE, MAE) with residual diagnostics for biological interpretability. Conducted advanced data preprocessing and visualization creating correlation heatmaps, feature importance rankings, and efficiency distribution analyses, discovering T-count as most predictive feature while validating established biological understanding of CRISPR mechanisms",
         image: PROJECT_IMG_6,
         linkUrl: "#",
         githubUrl: "#",
-        tags: ["React.js", "Tailwind CSS","Node.js","Express.js","MongoDB"],
-        category: "Full Stack",
-        featured: false,
-    }
+        tags: ["Python","Machine Learning","Data Analysis","Data Visualization","Pandas","Scikit-learn","Matplotlib","Seaborn"],
+        category: "Machine Learning",
+        featured: true,
+    },
 
 ];
 
@@ -276,24 +320,32 @@ export const SOCIAL_LINKS = [
         url: "mailto:vatsal.roy2429@gmail.com",
         color: "hover:text-green-500",
         bgColor: "hover:bg-green-500/10",
-    },    
+    },
+    {
+        name: "Resume",
+        icon: FileUser,
+        url: "https://drive.google.com/file/d/1cx222SwiVRMXvjkpCXrM0yftJJ-0UcYZ/view?usp=sharing",
+        color: "hover:text-gray-500",
+        bgColor: "hover:bg-gray-500/10",
+    },
 ]
 
 export const CONTACT_INFO = [
     {
         icon: MapPin,
         label: "Location",
-        value: "Old Bridge, NJ",
+        value: "New York City, NY",
     },
     {
         icon: Phone,
         label: "Phone",
         value: "+1 (908) 900-7259",
     },
+    /*
     {
         icon: Mail,
         label: "Email",
         value: "vatsal.roy2429@gmail.com",
     },
-    
+    */
 ];

@@ -93,8 +93,9 @@ const ContactSection = () => {
 
                 </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-                {/* Contact Form */}
+            <div className="grid  items-start">
+                {/* Contact Form lg:grid-cols-2 gap-16*/}
+                {/* 
                 <motion.div
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
@@ -158,6 +159,7 @@ const ContactSection = () => {
 
                     </motion.div>         
                 </motion.div>
+                */}
                 {/* Contact Info & Social Links */}
                 <motion.div
                     initial="hidden"
