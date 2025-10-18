@@ -324,7 +324,7 @@ export const SOCIAL_LINKS = [
     {
         name: "Resume",
         icon: FileUser,
-        url: "https://drive.google.com/file/d/1cx222SwiVRMXvjkpCXrM0yftJJ-0UcYZ/view?usp=sharing",
+        url: "https://drive.google.com/file/d/1_YdJ2jt9anbf1vNyLsSSTsvr1VMb1xL7/view?usp=sharing",
         color: "hover:text-gray-500",
         bgColor: "hover:bg-gray-500/10",
     },
