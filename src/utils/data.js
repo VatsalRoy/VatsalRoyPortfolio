@@ -23,12 +23,15 @@ import{
 
 import{ FiGithub, FiLinkedin} from "react-icons/fi";
 
-import PROJECT_IMG_1 from "../assets/images/project1.png";
-import PROJECT_IMG_2 from "../assets/images/project2.png";
-import PROJECT_IMG_3 from "../assets/images/project3.png";
-import PROJECT_IMG_4 from "../assets/images/project4.png";
-import PROJECT_IMG_5 from "../assets/images/project5.png";
-import PROJECT_IMG_6 from "../assets/images/project6.png";
+import PROJECT_IMG_1 from "../assets/images/01_agentic_pipeline.png";
+import PROJECT_IMG_2 from "../assets/images/02_cardiomegaly_cnn.png";
+import PROJECT_IMG_3 from "../assets/images/03_ai_news_aggregator.png";
+import PROJECT_IMG_4 from "../assets/images/04_ma_pipeline.png";
+import PROJECT_IMG_5 from "../assets/images/05_protein_lab.png";
+import PROJECT_IMG_7 from "../assets/images/07_call_center_speech.png";
+import PROJECT_IMG_8 from "../assets/images/08_multilingual_ner.png";
+import PROJECT_IMG_9 from "../assets/images/09_wireframepro.png";
+import PROJECT_IMG_10 from "../assets/images/10_crispr_efficiency.png";
 
 export const SKILLS_CATEGORY = [
     /*{
@@ -150,17 +153,60 @@ export const TECH_STACK = [
 
 export const STATS = [
     {number: "25+", label: "Projects Completed"},
-    {number: "5+", label: "Years of Experience"},
+    {number: "2.5+", label: "Years of Experience"},
     {number: "40+", label: "Technologies"},
 ];
 
 export const PROJECTS = [
-
     {
         id: 1,
+        title: "Agentic Personalization Pipeline — Large-Scale Behavioral Text Analysis",
+        description: "Maintained 100% processing completion across 5M+ Yelp reviews by engineering a fault-tolerant LLM system with bandit-style routing agents that autonomously diagnosed and repaired malformed inputs in real-time, eliminating manual intervention entirely at production scale. Scaled LLM inference throughput 5× via Airflow DAG orchestration deploying LLaMA 3.2 (foundation model) with a 10% degradation threshold, demonstrating production-grade cost-quality optimization for GenAI workloads.",
+        image: PROJECT_IMG_1,
+        linkUrl: "#",
+        githubUrl: "https://github.com/VatsalRoy/self-healing-data-pipeline-de",
+        tags: ["Python","LLM","Airflow"],
+        category: "Data Engineering & Automation",
+        featured: true,
+    },
+    {
+        id: 2,
+        title: "Cardiomegaly Detection — CNN with Reinforcement-Guided Hyperparameter Search",
+        description: "Achieved AUC 0.906 and 79.8% held-out accuracy on automated cardiomegaly detection by designing a 4-block CNN whose hyperparameters were optimized via reward-signal-driven sequential search — directly applying RL-style policy optimization to model tuning. Preserved class-distribution integrity and cut training iteration time by 3× on 5,447 NIH CheXpert images by implementing stratified splitting, resolving pixel artifacts, and serializing to HDF5 — meeting the data quality bar required for production-scale behavioral modeling.",
+        image: PROJECT_IMG_2,
+        linkUrl: "#",
+        githubUrl: "https://github.com/VatsalRoy/CardiomegalyPridiction",
+        tags: ["Python","CNN","Reinforcement Learning", "Deep Learning", "Medical Imaging", "Machine Learning"],
+        category: "Bioinformatics",
+        featured: true,
+    },
+    {
+        id: 3,
+        title: "Personalized AI News Aggregator — RAG-Based Customer Behavior Modeling",
+        description: "Built a personalization engine that improved content relevance scores by 42% by dynamically ranking multi-source articles using transformer-based embeddings against structured user behavior profiles, delivering personalized digests aligned with Prime-style customer journey optimization. Reduced content ingestion latency by 60% via bandit-style source weighting that adaptively prioritized higher-signal RSS feeds and transcripts, backed by a SQLAlchemy/PostgreSQL store ensuring idempotent delivery across all source types.",
+        image: PROJECT_IMG_3,
+        linkUrl: "#",
+        githubUrl: "https://github.com/VatsalRoy/AI-News-Aggregator",
+        tags: ["Python","RAG","Content Personalization"],
+        category: "AI Agent",
+        featured: true,
+    },
+    {
+        id: 4,
+        title: "Multi-Company M&A Data Integration Pipeline",
+        description: "Architected and implemented a multi-source data engineering pipeline using PySpark and Delta Lake on Databricks, orchestrating a Medallion Architecture (Bronze → Silver → Gold) to seamlessly consolidate disparate ERP data from a parent company and an S3-based child company into an enterprise-wide Unity Catalog Engineered comprehensive ETL, multi-format date-parsing, and robust data-cleansing jobs that remediated schema anomalies, imputed missing records, deduplicated multi-million row transactional datasets, and aggregated daily streaming logs into clean, standardized dimension and monthly fact tables",
+        image: PROJECT_IMG_4,
+        linkUrl: "#",
+        githubUrl: "https://github.com/VatsalRoy/atlicon-sports-dedb",
+        tags: ["Python","PySpark","Delta Lake","Databricks","Medallion Architecture","ETL","Data Cleansing","Data Integration","Data Pipeline"],
+        category: "Data Engineering",
+        featured: true,
+    },
+    {
+        id: 5,
         title: "Protein Lab: Enhanced ESMFold Protein Structure Predictor",
         description: "Developed a Streamlit web application for enhanced protein structure prediction using the ESMFold model. The tool features interactive 3D visualization with multiple rendering styles and advanced structural analysis, including per-residue pLDDT confidence scores, identification of low-confidence regions, and calculation of key geometric properties (Radius of Gyration). Supports FASTA input for diverse sequence processing.",
-        image: PROJECT_IMG_1,
+        image: PROJECT_IMG_5,
         linkUrl: "#",
         githubUrl: "https://github.com/VatsalRoy/protein-lab",
         tags: ["Python", "Bioinformatics", "Protein Structure Prediction", "Streamlit", "ESMFold", "Data Visualization", "Numpy", "Pandas", "Plotly", "stmol", "py3Dmol"],
@@ -168,21 +214,10 @@ export const PROJECTS = [
         featured: true,
     },
     {
-        id: 2,
-        title: "Interactive ML Studio - Random Forest Regression",
-        description: "Developed an interactive, no-code Machine Learning web application using Streamlit. The platform allows users to upload CSV data, apply Random Forest Regression, and perform interactive parameter tuning for learning and general parameters. It provides real-time performance evaluation, prominently displaying R² Score and Mean Squared Error (MSE) for both training and test sets and utilizes Scikit-learn.",
-        image: PROJECT_IMG_2,
-        linkUrl: "#",
-        githubUrl: "https://github.com/VatsalRoy/ml-studio",
-        tags: ["Python", "Machine Learning", "Data Science", "Streamlit", "Scikit-learn", "Random Forest", "Data Visualization", "Pandas", "Numpy"],
-        category: "Machine Learning",
-        featured: false,
-    },
-    {
-        id: 3,
+        id: 7,
         title: "Call Center Speech Analytics Pipeline",
         description: "Built an end-to-end speech analytics pipeline to process call center recordings. Utilized the AssemblyAI SDK to transcribe audio, enabling speaker diarization (voice recognition) and sentiment analysis. Integrated the LeMUR LLM feature to intelligently infer and map generic speaker labels (A, B) to actual names present in the transcript. Performed Named Entity Recognition (NER) using spaCy to extract relevant entities from the dialogue. Visualized the results with interactive heatmaps generated by Altair, showing sentiment distribution across different speakers and dialogue sequences.",
-        image: PROJECT_IMG_3,
+        image: PROJECT_IMG_7,
         linkUrl: "#",
         githubUrl: "https://github.com/VatsalRoy/call-center-speech-analytics",
         tags: ["Python", "AssemblyAI", "LeMUR", "Natural Language Processing", "Speech-to-Text", "Speaker Diarization", "Sentiment Analysis", "spaCy", "Data Visualization", "Altair", "Pandas"],
@@ -190,10 +225,10 @@ export const PROJECTS = [
         featured: false,
     },
     {
-        id: 4,
+        id: 8,
         title: "Multilingual Named Entity Recognition (NER) Studio",
         description: "Developed a **multilingual Named Entity Recognition (NER) web application** using **Streamlit**. The tool performs sophisticated NLP analysis across **100+ languages** by integrating **Hugging Face**'s pre-trained **XLM-RoBERTa-large** model for sequence classification.",
-        image: PROJECT_IMG_4,
+        image: PROJECT_IMG_8,
         linkUrl: "#",
         githubUrl: "https://github.com/VatsalRoy/multilingual-ai",
         tags: ["Python", "Natural Language Processing", "Multilingual AI", "Hugging Face", "XLM-RoBERTa", "Named Entity Recognition", "Streamlit", "Transformers", "PyTorch"],
@@ -201,78 +236,70 @@ export const PROJECTS = [
         featured: false,
     },
     {
-        id: 5,
+        id: 9,
         title: "WireframePro - Wireframe to Code",
         description: "Developed full-stack web platform automating wireframe-to-code conversion using OpenAI API with React/TypeScript frontend, Node.js/Express backend, and MySQL database. Integrated Stripe payment system for credit-based transactions and implemented real-time code preview with streaming AI responses. Designed database schema and RESTful APIs supporting authentication, content management, usage tracking, and multiframework code generation.",
-        image: PROJECT_IMG_5,
+        image: PROJECT_IMG_9,
         linkUrl: "#",
         githubUrl: "#",
         tags: ["React", "Tailwind CSS", "TypeScript","Node.js","Express","MySql","OpenAI"],
-        category: "Full Stack",
-        featured: true,
+        category: "AI",
+        featured: false,
     },
     {
-        id: 6,
+        id: 10,
         title: "Predicting CRISPR-Cas9 on-target efficiency",
         description: "Implemented end-to-end ML pipeline with Python, scikit-learn, and XGBoost, achieving 42.1% R2 performance through systematic feature engineering of 15+ genomic sequence features. Developed and evaluated three machine learning algorithms (XGBoost, SVM, KNN) using comprehensive statistical analysis including PCA, correlation analysis, and model validation techniques (MSE, RMSE, MAE) with residual diagnostics for biological interpretability. Conducted advanced data preprocessing and visualization creating correlation heatmaps, feature importance rankings, and efficiency distribution analyses, discovering T-count as most predictive feature while validating established biological understanding of CRISPR mechanisms",
-        image: PROJECT_IMG_6,
+        image: PROJECT_IMG_10,
         linkUrl: "#",
         githubUrl: "#",
         tags: ["Python","Machine Learning","Data Analysis","Data Visualization","Pandas","Scikit-learn","Matplotlib","Seaborn"],
-        category: "Machine Learning",
-        featured: true,
+        category: "Bioinformatics",
+        featured: false,
     },
 
 ];
 
 export const JOURNEY_STEPS = [
     {
-        year: "2020",
-        title: "Web and Graphic Volunteer",
-        company: "Gujarat Technological University, Gujarat, India",
-        description: "Started my journey as a voulenteer at Gujarat Technological University, Gujarat, India",
-        icon: Rocket,
-        color: "bg-orange-500",
-    },
-    {
-        year: "2021",
-        title: "Web and Graphic Head",
-        company: "Gujarat Technological University, Gujarat, India",
-        description: "Defined strategic vision and led development of an event registration platform for 5,000–6,000 students",
-        icon: Zap,
-        color: "bg-yellow-500",
-    },
-    {
-        year: "2022",
-        title: "Data Engineer Intern",
-        company: "NMR Infotech Pvt Ltd",
-        description: "Developed machine learning pipelines, conducted exploratory analysis, preprocessing, and feature extraction on datasets for multiple business clients",
-        icon: Briefcase,
-        color: "bg-green-500",
-    },
-    {
-        year: "2023",
-        title: "Bachelor of Technology in Computer Engineering",
+        year: "2019 - 2023",
+        title: "B.S. in Computer Engineering",
         company: "Gujarat Technological University, Gujarat, India",
         description: "Graduated with a GPA of 3.17",
         icon: GraduationCap,
         color: "bg-blue-500",
     },
     {
-        year: "2025",
-        title: "Data Analyst Intern",
-        company: "Blossom Lab of Gem Institute, New York, NY",
-        description: "Analyzed 2 years of finance and sales data to identify revenue trends, gemstone identification patterns, and optimize service pricing based on demand frequency.",
+        year: "2020 - 2021",
+        title: "Web and Graphic Head",
+        company: "Gujarat Technological University, Gujarat, India",
+        description: "Defined strategic vision and led development of an event registration platform for 5,000–6,000 students",
         icon: Rocket,
-        color: "bg-red-500",
+        color: "bg-yellow-500",
     },
     {
-        year: "2026",
-        title: "Master of Science in Computer Science",
+        year: "2022 - 2023",
+        title: "Data Engineer",
+        company: "NMR Infotech Pvt Ltd",
+        description: "Developed machine learning pipelines, conducted exploratory analysis, preprocessing, and feature extraction on datasets for multiple business clients",
+        icon: Briefcase,
+        color: "bg-green-500",
+    },
+    {
+        year: "2024 - 2026",
+        title: "M.S. in Computer Science",
         company: "Long Island University, Brooklyn, NY",
-        description: "Graduated with a GPA of 3.67",
+        description: "Graduated with a GPA of 3.7",
         icon: GraduationCap,
         color: "bg-cyan-500",
+    },
+    {
+        year: "2026 - Present",
+        title: "Data Analyst",
+        company: "Community Dreams Foundation",
+        description: "Reduced customer behavioral data pipeline failures by 35% by engineering ETL monitoring with automated anomaly detec-tion and drift alerting across 6+ source systems, enabling reliable feeds for downstream behavior models.",
+        icon: Briefcase,
+        color: "bg-green-500",
     }
 ];
 
@@ -314,6 +341,7 @@ export const SOCIAL_LINKS = [
         color: "hover:text-blue-500",
         bgColor: "hover:bg-blue-500/10",
     },
+    /*
     {
         name: "Email",
         icon: Mail,
@@ -328,6 +356,7 @@ export const SOCIAL_LINKS = [
         color: "hover:text-gray-500",
         bgColor: "hover:bg-gray-500/10",
     },
+    */
 ]
 
 export const CONTACT_INFO = [
@@ -341,11 +370,9 @@ export const CONTACT_INFO = [
         label: "Phone",
         value: "+1 (908) 900-7259",
     },
-    /*
     {
         icon: Mail,
         label: "Email",
         value: "vatsal.roy2429@gmail.com",
     },
-    */
 ];

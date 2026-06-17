@@ -89,55 +89,20 @@ const AboutSection = () => {
                                     className={'p-8 rounded-2xl border ${isDrakeMode ? "bg-gray-800/50 border-gray-700 backdrop-blur-sm" : "bg-gray-50/80 border-gray-200 backdrop-blur-sm"}'}>
                                         <h3 className="text-2xl font-medium mb-6">My Mission</h3>
                                         <p className={`text-lg leading-relaxed mb-6 ${isDrakeMode ? "text-gray-300" : "text-gray-700"}`}>
-                                        I'm a Machine Learning Engineer passionate about building intelligent solutions, teaching through projects, and learning from real-world data. With a Master's in Computer Science from Long Island University and a Bachelor's in Computer Engineering from Gujarat Technological University, my journey spans from leading web development initiatives building an event registration platform for 5,000+ students to developing ML pipelines as a Data Engineer Intern at NMR Infotech. During my summer internship at Blossom Lab of Gem Institute in New York, I analyzed finance and sales data to optimize pricing strategies and identify revenue trends.                                        </p>
+                                        Over the past few years, I've worked across the full stack of applied machine learning — from designing ETL pipelines and data warehouses that feed clean, reliable signals into models, to deploying LLM-powered systems that process millions of records without manual intervention. At NMR Infotech, I cut model development timelines by 25% across 8+ client projects by standardizing feature engineering frameworks, and kept production ML running at 99.2% uptime with automated drift monitoring and rollback. Currently at Community Dreams Foundation, I focus on customer behavioral data — building anomaly detection into pipelines and turning A/B experiment results into self-serve dashboards that product teams actually use.
+                                        </p>
                                         <p className={`text-lg leading-relaxed ${isDrakeMode ? "text-gray-300" : "text-gray-700"}`}>
-                                        I specialize in deep learning (CNNs), statistical modeling, and end-to-end ML pipeline development using Python, TensorFlow, pandas, and NumPy. My projects range from medical image classification for cardiomegaly detection to restaurant delivery analytics, always transforming complex data into actionable insights. I believe in continuous learning and knowledge sharing approaching each project as an opportunity to build, teach, and grow while contributing to AI technologies that solve real-world challenges
+                                        What I enjoy most is the intersection of GenAI and engineering rigor. My recent projects include a fault-tolerant, agentic LLM pipeline that processed 5M+ Yelp reviews with 100% completion (Airflow + LLaMA 3.2, with bandit-style routing that self-heals malformed inputs), a RAG-based personalized news aggregator that improved content relevance by 42%, and a CNN for cardiomegaly detection (AUC 0.906) tuned with reinforcement-learning-style hyperparameter search.
+                                        </p>
+                                        <p className={`text-lg leading-relaxed ${isDrakeMode ? "text-gray-300" : "text-gray-700"}`}>
+                                        I hold an M.S. in Computer Science from Long Island University (Deep Learning, AI, Statistics) and a B.S. in Computer Engineering from Gujarat Technological University. My toolkit spans Python, SQL, PyTorch, TensorFlow, Spark, Databricks, Airflow, and AWS — but what I really care about is shipping systems that are measurable, reliable, and useful.
+                                        </p>
+                                        <p className={`text-lg leading-relaxed ${isDrakeMode ? "text-gray-300" : "text-gray-700"}`}>
+                                        Open to connecting about applied ML, data engineering, and GenAI/LLM systems — or anything in between.
                                         </p>
                                 </motion.div>
-                                {/* What I Love Building */}
-                                <motion.div variants={itemVariants} className="space-y-4">
-                                    <h3 className="text-xl font-medium mb-6">What I Love Building</h3>
-                                    <div className="grid gap-4">
-                                        {PASSIONS.map((passion, index) => (
-                                            <motion.div
-                                                key={passion.title}
-                                                variants={itemVariants}
-                                                whileHover={{ x: 4 }}
-                                                className={`flex items-center space-x-4 rounded-xl ${isDrakeMode ? "bg-gray-800/30 hover:bg-gray-800/50" : "bg-gray-50/50 hover:bg-gray-100/50"} transition-colors duration-300`}>
-                                                    <div 
-                                                        className={`p-3 rounded-lg ${isDrakeMode ? "bg-gray-700" : "bg-white"}`}
-                                                    >
-                                                        <passion.icon size={20} className="text-blue-500" />
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="font-medium mb-1">{passion.title}</h4>
-                                                        <p
-                                                            className={`text-sm ${isDrakeMode ? "text-gray-400" : "text-gray-600"}`}
-                                                          >
-                                                            {passion.description}
-                                                        </p>
-                                                    </div>
-                                                </motion.div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                                {/* Digital Signature */}
-                                <motion.div
-                                    variants={itemVariants}
-                                    className="text-center py-8">
-                                        <div className={`text-sm ${isDrakeMode ? "text-gray-500" : "text-gray-600"} mb-4`}>
-                                            Crafted with passion by
-                                        </div>
-                                        {/* Signature Image */}
-                                        <div className="flex justify-center">
-                                            <img src={SIGNATURE} alt="Vatsal Roy" className="w-28" />
-                                        </div>
-                                        <div className="text-lg font-medium text-blue-500 mt-2">
-                                            Vatsal Roy
-                                        </div>
-                                </motion.div>
                             </motion.div>
-
+                                        
                         {/* Devloper Journey Timeline */}
                         <motion.div
                             ref={timelineRef}
@@ -196,27 +161,22 @@ const AboutSection = () => {
                             </motion.div>
                     </div>
 
-                    {/* Call to Action */}
+                    {/* Digital Signature */}
+                    {/*
                     <motion.div
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        variants={containerVariants}
-                        className="text-center mt-20">
-                            <motion.div 
-                                variants={itemVariants}
-                                className="flex flex-col items-center space-y-6">
-                                    <p className={`text-lg ${isDrakeMode ? "text-gray-400" : "text-gray-600"}`}>
-                                        I'm looking for a new opportunities to grow and contribute to innovative projects.
-                                    </p>
-
-                                    <motion.button
-                                        whileHover={{ y: -2, scale: 1.05 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300">
-                                            Let's Work Together
-                                        </motion.button>
-                                </motion.div>
-                        </motion.div>
+                                    variants={itemVariants}
+                                    className="text-center py-8">
+                                        <div className={`text-sm ${isDrakeMode ? "text-gray-500" : "text-gray-600"} mb-4`}>
+                                            Crafted with passion by
+                                        </div>
+                                        {/* Signature Image *
+                                        <div className="flex justify-center">
+                                            <img src={SIGNATURE} alt="Vatsal Roy" className="w-28" />
+                                        </div>
+                                        <div className="text-lg font-medium text-blue-500 mt-2">
+                                            Vatsal Roy
+                                        </div>
+                        </motion.div> */}
                 </div>
             </section>
     )

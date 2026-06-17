@@ -14,9 +14,9 @@ const App = () => {
       <div>
         <NavBar />
         <HeroSection />
+        <AboutSection />
         <SkillsSection />
         <ProjectsSection />
-        <AboutSection />
         <ContactSection />
         <Footer />    
       </div>

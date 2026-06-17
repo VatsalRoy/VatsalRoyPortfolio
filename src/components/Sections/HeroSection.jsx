@@ -102,7 +102,7 @@ const HeroSection = () => {
                             </motion.h1>
                         
                             <motion.p variants={itemVariants} className={`text-base md:text-lg ${isDrakeMode ? "text-gray-400" : "text-gray-600"} mb-8 max-w-xl mx-auto font-light leading-relaxed`}>
-                                    I'm a passionate AI/ML Engineer with a knack for building innovative solutions that solve real-world problems.
+                            I build ML and data systems that actually survive production.
                             </motion.p>
 
                             {/* CTA Buttons - Mobile*/}
@@ -131,7 +131,6 @@ const HeroSection = () => {
                                     {icon: FiGithub, href: 'https://github.com/VatsalRoy'},
                                     {icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/'},
                                     {icon: Mail, href: 'mailto:vatsal.roy2429@gmail.com'},
-                                    {icon: FileUser, href: 'https://drive.google.com/file/d/1cx222SwiVRMXvjkpCXrM0yftJJ-0UcYZ/view?usp=sharing'},
                                 ].map((social, index) => (
                                     <motion.a
                                     key={index}
@@ -204,7 +203,7 @@ const HeroSection = () => {
                             </span>
                         </motion.h1>
                         <motion.p variants={itemVariants} className={`text-xl ${isDrakeMode ? "text-gray-400" : "text-gray-600"} mb-12 max-w-lg font-light leading-relaxed`}>
-                            I'm a passionate AI/ML Engineer with a knack for building innovative solutions that solve real-world problems.
+                        I build ML and data systems that actually survive production.
                         </motion.p>
 
                         {/* CTA Buttons - Desktop*/}
@@ -231,7 +230,6 @@ const HeroSection = () => {
                                 {icon: FiGithub, href: 'https://github.com/VatsalRoy'},
                                 {icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/'},
                                 {icon: Mail, href: 'mailto:vatsal.roy2429@gmail.com'},
-                                {icon: FileUser, href: 'https://drive.google.com/file/d/1cx222SwiVRMXvjkpCXrM0yftJJ-0UcYZ/view?usp=sharing'},
                             ].map((social, index) => (
                                 <motion.a
                                 key={index}
