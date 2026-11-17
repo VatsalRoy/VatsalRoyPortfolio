@@ -18,6 +18,9 @@ import{
     Frame,
     BarChart3, 
     Network,
+    FileUser,
+    FlaskConical,
+    ShieldCheck,
 
 } from "lucide-react";
 
