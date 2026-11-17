@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
+  <style>
+    .sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+    .mono{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace}
+    .bar{transform-box:fill-box;transform-origin:left;animation:grow 1.1s cubic-bezier(.2,.8,.2,1) both}
+    .b2{animation-delay:.12s}.b3{animation-delay:.24s}.b4{animation-delay:.36s}.b5{animation-delay:.48s}
+    @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  </style>
+  <rect x=".5" y=".5" width="799" height="459" rx="20" fill="#0b1220" stroke="#24324f"/>
+  <text x="40" y="52" class="mono" font-size="19" fill="#f472b6" letter-spacing="1.5">LLM INFERENCE · QUALITY GATE</text>
+  <text x="40" y="96" class="sans" font-size="34" font-weight="800" fill="#f8fafc">quant-gate</text>
+  <text x="40" y="130" class="sans" font-size="22" fill="#94a3b8">The compressed model loads. Does it still work?</text>
+
+  <text x="760" y="160" text-anchor="end" class="mono" font-size="16" fill="#64748b">coding problems solved / 164</text>
+  <g class="sans" font-size="20">
+    <text x="40" y="191" fill="#e2e8f0">Original (3.47 GB)</text>
+    <rect x="290" y="173" width="400" height="24" rx="6" fill="#1e293b"/>
+    <rect x="290" y="173" width="288" height="24" rx="6" fill="#64748b" class="bar"/>
+    <text x="704" y="192" fill="#cbd5e1" font-weight="700">118</text>
+
+    <text x="40" y="229" fill="#e2e8f0">Q8_0 (1.85 GB)</text>
+    <rect x="290" y="211" width="400" height="24" rx="6" fill="#1e293b"/>
+    <rect x="290" y="211" width="290" height="24" rx="6" fill="#38bdf8" class="bar b2"/>
+    <text x="704" y="230" fill="#7dd3fc" font-weight="700">119</text>
+
+    <text x="40" y="267" fill="#e2e8f0">IQ4_XS (1.00 GB)</text>
+    <rect x="290" y="249" width="400" height="24" rx="6" fill="#1e293b"/>
+    <rect x="290" y="249" width="271" height="24" rx="6" fill="#34d399" class="bar b3"/>
+    <text x="704" y="268" fill="#6ee7b7" font-weight="700">111</text>
+
+    <text x="40" y="305" fill="#e2e8f0">Q2_K + imatrix</text>
+    <rect x="290" y="287" width="400" height="24" rx="6" fill="#1e293b"/>
+    <rect x="290" y="287" width="134" height="24" rx="6" fill="#fbbf24" class="bar b4"/>
+    <text x="704" y="306" fill="#fcd34d" font-weight="700">55</text>
+
+    <text x="40" y="343" fill="#e2e8f0">Q2_K, no imatrix</text>
+    <rect x="290" y="325" width="400" height="24" rx="6" fill="#1e293b"/>
+    <rect x="290" y="325" width="5" height="24" rx="2" fill="#f87171" class="bar b5"/>
+    <text x="304" y="344" fill="#fca5a5" font-size="17">loads fine, solves 1</text>
+    <text x="704" y="344" fill="#fca5a5" font-weight="700">1</text>
+  </g>
+
+  <line x1="40" y1="374" x2="760" y2="374" stroke="#1e293b"/>
+  <text x="40" y="420" class="mono" font-size="19" fill="#64748b">45 GGUF files · PASS/FAIL in ~4 min · GitHub Action</text>
+</svg>

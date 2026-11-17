@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
+  <style>
+    .sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+    .mono{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:18px}
+    
+    .h1{animation-delay:.4s}.h2{animation-delay:.8s}.h3{animation-delay:1.2s}
+    
+    .t1{animation-delay:1.7s}.t2{animation-delay:2s}.t3{animation-delay:2.3s}.t4{animation-delay:2.6s}
+    @keyframes appear{to{opacity:1}}
+  </style>
+  <rect x=".5" y=".5" width="799" height="459" rx="20" fill="#0b1220" stroke="#24324f"/>
+  <text x="40" y="52" class="mono" font-size="19" fill="#34d399" letter-spacing="1.5" >PRIVACY · APPLIED NLP</text>
+  <text x="40" y="96" class="sans" font-size="34" font-weight="800" fill="#f8fafc">Shadow AI Privacy Auditor</text>
+  <text x="40" y="130" class="sans" font-size="22" fill="#94a3b8">Redacts sensitive data before it reaches a public AI tool.</text>
+
+  <!-- panes -->
+  <rect x="40" y="158" width="340" height="196" rx="12" fill="#0f172a" stroke="#1e293b"/>
+  <rect x="420" y="158" width="340" height="196" rx="12" fill="#0f172a" stroke="#1e293b"/>
+  <text x="60" y="186" class="sans" font-size="16" font-weight="700" fill="#64748b" letter-spacing="1.2">BEFORE</text>
+  <text x="440" y="186" class="sans" font-size="16" font-weight="700" fill="#64748b" letter-spacing="1.2">SAFE TO SEND</text>
+  <path d="M388 256h22m-8-7 8 7-8 7" stroke="#38bdf8" stroke-width="2.5" fill="none"/>
+
+  <!-- before: highlights -->
+  <rect class="hl h1" x="144" y="203" width="90" height="26" rx="5" fill="#7f1d1d"/>
+  <rect class="hl h2" x="120" y="243" width="130" height="26" rx="5" fill="#7f1d1d"/>
+  <rect class="hl h3" x="100" y="283" width="148" height="26" rx="5" fill="#78350f"/>
+  <g class="mono" fill="#cbd5e1">
+    <text x="60" y="222">Hi, I'm</text>
+    <text x="148" y="222" textLength="82" lengthAdjust="spacingAndGlyphs" fill="#fecaca">Jane Doe</text>
+    <text x="60" y="262">email</text>
+    <text x="124" y="262" textLength="122" lengthAdjust="spacingAndGlyphs" fill="#fecaca">jane@acme.io</text>
+    <text x="60" y="302">key</text>
+    <text x="104" y="302" textLength="140" lengthAdjust="spacingAndGlyphs" fill="#fde68a">sk-test-4f9aX2</text>
+    <text x="60" y="338">Sync at 3:00 PM.</text>
+  </g>
+
+  <!-- after: tokens -->
+  <g class="mono">
+    <text x="440" y="222" fill="#cbd5e1">Hi, I'm</text>
+    <g class="tok t1"><rect x="526" y="203" width="74" height="26" rx="13" fill="#0f2a3d" stroke="#38bdf8"/><text x="563" y="222" text-anchor="middle" fill="#7dd3fc">NAME</text></g>
+    <text x="440" y="262" fill="#cbd5e1">email</text>
+    <g class="tok t2"><rect x="502" y="243" width="84" height="26" rx="13" fill="#0f2a3d" stroke="#38bdf8"/><text x="544" y="262" text-anchor="middle" fill="#7dd3fc">EMAIL</text></g>
+    <text x="440" y="302" fill="#cbd5e1">key</text>
+    <g class="tok t3"><rect x="482" y="283" width="106" height="26" rx="13" fill="#3a2a10" stroke="#fbbf24"/><text x="535" y="302" text-anchor="middle" fill="#fcd34d">API_KEY</text></g>
+    <text x="440" y="338" fill="#cbd5e1">Sync at 3:00 PM.</text>
+    <g class="tok t4"><text x="740" y="338" text-anchor="end" fill="#34d399">✓ kept</text></g>
+  </g>
+
+  <line x1="40" y1="384" x2="760" y2="384" stroke="#1e293b"/>
+  <text x="40" y="420" class="mono" fill="#64748b" style="font-size:19px">FastAPI · React · spaCy · no LLM calls</text>
+</svg>
