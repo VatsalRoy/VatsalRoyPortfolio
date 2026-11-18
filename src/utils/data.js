@@ -26,16 +26,6 @@ import{
 
 import{ FiGithub, FiLinkedin} from "react-icons/fi";
 
-import PROJECT_IMG_1 from "../assets/images/01_agentic_pipeline.png";
-import PROJECT_IMG_2 from "../assets/images/02_cardiomegaly_cnn.png";
-import PROJECT_IMG_3 from "../assets/images/03_ai_news_aggregator.png";
-import PROJECT_IMG_4 from "../assets/images/04_ma_pipeline.png";
-import PROJECT_IMG_5 from "../assets/images/05_protein_lab.png";
-import PROJECT_IMG_7 from "../assets/images/07_call_center_speech.png";
-import PROJECT_IMG_8 from "../assets/images/08_multilingual_ner.png";
-import PROJECT_IMG_9 from "../assets/images/09_wireframepro.png";
-import PROJECT_IMG_10 from "../assets/images/10_crispr_efficiency.png";
-
 import CARD_LAKEHOUSE from "../assets/images/card-lakehouse.svg";
 import CARD_AGENT_BENCH from "../assets/images/card-agent-bench.svg";
 import CARD_KEEP_IT_WARM from "../assets/images/card-keep-it-warm.svg";
@@ -45,6 +35,7 @@ import CARD_SHADOW_AI from "../assets/images/card-shadow-ai.svg";
 export const SKILLS_CATEGORY = [
     {
         title: "LLM Systems & Agents",
+        proof: { name: "agent-reliability-bench", text: "Tool-using agent graded on database state across 85 runs", url: "https://github.com/VatsalRoy/agent-reliability-bench" },
         icon: Network,
         description: "Build tool-using agents, RAG and text-to-SQL systems on open and hosted models",
         skills: [
@@ -57,6 +48,7 @@ export const SKILLS_CATEGORY = [
     },
     {
         title: "LLM Evaluation & Reliability",
+        proof: { name: "lakehouse-sql-eval", text: "Text-to-SQL accuracy 45.6% → 81.7%, with a 95% CI", url: "https://github.com/VatsalRoy/lakehouse-sql-eval" },
         icon: FlaskConical,
         description: "Judge AI systems by the answers they produce, with confidence intervals and limitations",
         skills: [
@@ -69,6 +61,7 @@ export const SKILLS_CATEGORY = [
     },
     {
         title: "Machine Learning & MLOps",
+        proof: { name: "quant-gate", text: "CI gate that rejects broken GGUF files in ~30s", url: "https://github.com/VatsalRoy/quant-gate" },
         icon: BrainCircuit,
         description: "Train, ship and monitor models that survive production",
         skills: [
@@ -81,6 +74,7 @@ export const SKILLS_CATEGORY = [
     },
     {
         title: "Data Engineering & Lakehouse",
+        proof: { name: "NMR Infotech", text: "AWS S3 warehouse with schema contracts and quality gates for 8+ client projects", url: null },
         icon: Database,
         description: "Pipelines, semantic layers and warehouses that give models trustworthy inputs",
         skills: [
@@ -93,6 +87,7 @@ export const SKILLS_CATEGORY = [
     },
     {
         title: "Backend & Full-Stack",
+        proof: { name: "shadow-ai-privacy-auditor", text: "FastAPI + React app, live on Render", url: "https://github.com/VatsalRoy/shadow-ai-privacy-auditor" },
         icon: Server,
         description: "Ship real apps and APIs around AI systems",
         skills: [
@@ -105,6 +100,7 @@ export const SKILLS_CATEGORY = [
     },
     {
         title: "Cloud, Security & DevOps",
+        proof: { name: "shadow-ai-privacy-auditor", text: "Redacts PII and secrets before prompts leave the company", url: "https://github.com/VatsalRoy/shadow-ai-privacy-auditor" },
         icon: Cloud,
         description: "Deploy, containerize and protect data before it leaves the company",
         skills: [
@@ -125,8 +121,8 @@ export const TECH_STACK = [
 ];
 
 export const STATS = [
-    {number: "2.5+", label: "Years of Experience"},
-    {number: "5", label: "Open-Source AI Benchmarks"},
+    {number: "2+", label: "Years in ML & Data Engineering"},
+    {number: "5", label: "Open-Source AI Projects"},
     {number: "40+", label: "Technologies"},
 ];
 
@@ -238,53 +234,5 @@ export const PASSIONS = [
     { icon: ShieldCheck, title: "AI Privacy & Safety", description: "Keeping PII and secrets inside the company" },
 ];
 
-export const SOCIAL_LINKS = [
-    {
-        name: "GitHub",
-        icon: FiGithub,
-        url: "https://github.com/VatsalRoy",
-        color: "hover:text-gray-400",
-        bgColor: "hover:bg-gray-800",
-    },
-    {
-        name: "LinkedIn",
-        icon: FiLinkedin,
-        url: "https://www.linkedin.com/in/vatsal-roy/",
-        color: "hover:text-blue-500",
-        bgColor: "hover:bg-blue-500/10",
-    },
-    /*
-    {
-        name: "Email",
-        icon: Mail,
-        url: "mailto:vatsal.roy2429@gmail.com",
-        color: "hover:text-green-500",
-        bgColor: "hover:bg-green-500/10",
-    },
-    {
-        name: "Resume",
-        icon: FileUser,
-        url: "https://drive.google.com/file/d/1_YdJ2jt9anbf1vNyLsSSTsvr1VMb1xL7/view?usp=sharing",
-        color: "hover:text-gray-500",
-        bgColor: "hover:bg-gray-500/10",
-    },
-    */
-]
 
-export const CONTACT_INFO = [
-    {
-        icon: MapPin,
-        label: "Location",
-        value: "New York City, NY",
-    },
-    {
-        icon: Phone,
-        label: "Phone",
-        value: "+1 (908) 900-7259",
-    },
-    {
-        icon: Mail,
-        label: "Email",
-        value: "vatsal.roy2429@gmail.com",
-    },
-];
+

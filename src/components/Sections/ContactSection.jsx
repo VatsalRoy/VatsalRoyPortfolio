@@ -1,270 +1,176 @@
-import {useState, useRef} from 'react';
-import {
-    motion,
-    useInView,
-    useScroll,
-    useTransform,
-} from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Check, Copy, Mail, MapPin, Phone } from 'lucide-react';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
 
-import { Send } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { containerVariants, itemVariants } from '../../utils/helper';
-import { CONTACT_INFO, SOCIAL_LINKS} from '../../utils/data'
-import TextInput from '../Inputs/TextInput';
-import SuccessModel from '../../components/SuccessModel';
+
+import DecryptedText from '../reactbits/DecryptedText';
+import SpotlightCard from '../reactbits/SpotlightCard';
+import StarBorder from '../reactbits/StarBorder';
+
+const EMAIL = 'vatsal.roy2429@gmail.com';
+const PHONE = '+1 (908) 900-7259';
+
+const CHANNELS = [
+    { icon: FiLinkedin, label: 'LinkedIn', value: 'in/vatsal-roy', href: 'https://www.linkedin.com/in/vatsal-roy/', note: 'Best for recruiters' },
+    { icon: FiGithub, label: 'GitHub', value: 'VatsalRoy', href: 'https://github.com/VatsalRoy', note: 'Code & write-ups' },
+    { icon: Phone, label: 'Phone', value: PHONE, href: 'tel:+19089007259', note: 'Call or text' },
+    { icon: MapPin, label: 'Location', value: 'New York, NY', href: null, note: 'Eastern Time' },
+];
+
+const ROLES = ['Forward Deployed Engineer', 'AI Engineer', 'ML Engineer'];
 
 const ContactSection = () => {
-    const {isDrakeMode} = useTheme();
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
-    const [showSuccess, setShowSuccess] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-
+    const { isDrakeMode } = useTheme();
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, {once: true, margin: "-100px"});
+    const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+    const [copied, setCopied] = useState(false);
 
-    const {scrollYProgress} = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"],
-    })
+    const muted = isDrakeMode ? 'text-gray-400' : 'text-gray-600';
+    const glass = isDrakeMode ? 'bg-[#060a18]/80 border-white/10' : 'bg-white/85 border-gray-200';
 
-    const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
-    const handleChange = (key, value) => {
-        setFormData({...formData, [key]: value});
+    const copyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText(EMAIL);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch {
+            window.location.href = `mailto:${EMAIL}`;
+        }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-
-        //Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        setIsSubmitting(false);
-        setShowSuccess(true);
-        setFormData({name: "", email: "", message: ""});
-
-        // Auto Hide success message after 3 seconds
-        setTimeout(() => setShowSuccess(false), 3000);
-    };
-
-    return <section
-        id="contact"
-        ref={sectionRef}
-        className={`py-24 px-6 ${isDrakeMode ? "bg-gray-950 text-white" : "bg-white text-gray-900"} relative overflow-hidden`}
-    >
-        {/* Background Elements */}
-        <motion.div
-            style={{y}}
-            className="absolute inset-0 overflow-hidden"
-        >
-            <div className={`absolute top-20 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-5 ${isDrakeMode ? "bg-blue-500" : "bg-blue-400"}`} />
-            <div className={`absolute bottom-40 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-5 ${isDrakeMode ? "bg-purple-500" : "bg-purple-400"}`} />
-        </motion.div>
-        <div className="max-w-6xl mx-auto relative z-10">
-            
-            {/* Section Header */}
+    return (
+        <section id="contact" ref={sectionRef} className={`pt-28 pb-16 px-6 ${isDrakeMode ? 'text-white' : 'text-gray-900'} relative`}>
             <motion.div
                 initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                animate={isInView ? 'visible' : 'hidden'}
                 variants={containerVariants}
-                className="text-center mb-20">
-                    <motion.div
-                        variants={itemVariants}
-                        className={`text-sm uppercase tracking-widest ${isDrakeMode ? "text-gray-500" : "text-gray-600"} mb-4`}>
-                            Let's Connect
-                        </motion.div>
-                        <motion.h2 
-                            variants={itemVariants}
-                            className="text-3xl md:text-5xl font-light mb-6">
-                            Get in 
-                            <span className="text-blue-500 font-medium"> Touch</span>
-                        </motion.h2>
-                        <motion.p
-                            variants={itemVariants}
-                            className={`text-xl max-w-2xl mx-auto ${isDrakeMode ? "text-gray-400" : "text-gray-600"}`}
-                        >
-                            Ready to bring me to the table? Let's discuss how I can bring your project to life.
-                        </motion.p>
-
+                className="max-w-6xl mx-auto relative z-10"
+            >
+                {/* Label */}
+                <motion.div variants={itemVariants} className="font-mono text-xs uppercase tracking-[0.3em] text-blue-500 mb-6">
+                    <DecryptedText text="// 05 — Let's Connect" animateOn="view" sequential speed={35} encryptedClassName="opacity-60" />
                 </motion.div>
 
-            <div className="grid  items-start">
-                {/* Contact Form lg:grid-cols-2 gap-16*/}
-                {/* 
-                <motion.div
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={containerVariants}
-                >
-                    <motion.div
-                        variants={itemVariants}
-                        className={`p-8 rounded-2xl border ${isDrakeMode ? "bg-gray-800/50 border-gray-700 backdrop-blur-sm" : "bg-gray-50/80 border-gray-200 backdrop-blur-sm"}`}>
-                            <h3 className="text-2xl font-medium mb-8">Send me a message</h3>
-
-                            <div className="space-y-6">
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <TextInput
-                                        isDrakeMode={isDrakeMode}
-                                        value={formData.name}
-                                        handleInputChange={(text) => handleChange("name", text)}
-                                        label="Your Name"
-                                    />
-                                    <TextInput
-                                        isDrakeMode={isDrakeMode}
-                                        label="Your Email"
-                                        value={formData.email}
-                                        handleInputChange={(text) => handleChange("email", text)}
-                                    />       
-                                </div>
-                                
-                                <TextInput
-                                   isDrakeMode={isDrakeMode}
-                                   label="Your Message"
-                                   value={formData.message}
-                                   handleInputChange={(text) => handleChange("message", text)}
-                                />
-
-                                <motion.button
-                                    disabled={isSubmitting}
-                                    whileHover={{ y: -2, scale: 1.02}}
-                                    whileTap={{ scale: 0.98}}
-                                    className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-400 text-white py-4 rounded-xl text-sm uppercase tracking-wider font-medium transition-all duration-300 flex items-center justify-center space-x-2"
-                                    onClick={handleSubmit}
-                                    >
-                                        {isSubmitting ? (
-                                            <>
-                                                <motion.div
-                                                    animate={{rotate: 360}}
-                                                    transition={{
-                                                        duration: 1, 
-                                                        repeat: Infinity,
-                                                        ease: "linear",
-                                                    }}
-                                                    className="w-4 h-4 border-2 border-white border-t-transparent rounded-full" /> 
-                                                    <span>Sending...</span>
-                                            </>   
-                                        ) : (
-                                            <>
-                                                <Send size={18} />
-                                                <span>Send Message</span>
-                                            </>
-                                        )}
-                                    </motion.button>
-                            </div>
-
-                    </motion.div>         
-                </motion.div>
-                */}
-                {/* Contact Info & Social Links */}
-                <motion.div
-                    initial="hidden"
-                    animate={isInView ? "visible" : "hidden"}
-                    variants={containerVariants}
-                    className="space-y-8"
-                >
-                    {/* Contact Info */}
-                    <motion.div 
-                        variants={itemVariants}>
-                            <h3 className="text-2xl font-medium mb-6">Contact Information</h3>
-                            <div className="space-y-4">
-                                {CONTACT_INFO.map((info, index) => (
-                                    <motion.div
-                                        key={info.label}
-                                        variants={itemVariants}
-                                        whileHover={{ x: 4}}
-                                        className={`flex items-center space-x-4 p-4 rounded-xl ${isDrakeMode ? "bg-gray-800/30 hover:bg-gray-800/50" : "bg-gray-50/50 hover:bg-gray-100/50"} transition-all duration-300`}
-                                        >
-                                            <div className={`p-3 rounded-lg ${isDrakeMode ? "bg-gray-700" : "bg-white"}`}>
-                                                <info.icon size={20} className="text-blue-500" />
-                                            </div>
-                                            <div>
-                                                <div className={`text-sm ${isDrakeMode ? "text-gray-500" : "text-gray-600"}`}>
-                                                    {info.label}
-                                                </div>
-                                                <div className="font-medium">
-                                                    {info.value}
-                                                </div>
-                                            </div>
-                                        </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    {/* Social Links */}
-                    <motion.div
-                        variants={itemVariants}
-                    >
-                        <h3 className="text-xl font-medium mb-6">Connect with me</h3>
-                        <div className="grid grid-cols-2 gap-4">
-                            {SOCIAL_LINKS.map((social) => (
-                                <motion.a
-                                    key={social.name}
-                                    href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ y: -2, scale: 1.05}}
-                                    className={`flex items-center space-x-3 p-4 rounded-xl border transition-all duration-300 ${isDrakeMode ? "bg-gray-800/50 border-gray-700 hover:border-gray-600" : "bg-white/80 border-gray-200 hover:border-gray-300"} ${social.bgColor} ${social.color}`}
-                                    >
-                                        <social.icon size={20} />
-                                        <span className="font-medium">{social.name}</span>
-
-                                    </motion.a>
-                            ))}
-                        </div>
-                    </motion.div>
-                    {/* Availability Status */}
-                    <motion.div
-                        variants={itemVariants}
-                        className={`p-6 rounded-xl border ${isDrakeMode ? "bg-green-500/10 border-green-500/20" : "bg-green-50 border-green-200"}`}
-                    >
-                        <div className="flex items-center space-x-3 mb-2">
-                            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                            <span className="font-medium text-green-500">Available for work</span>
-                        </div>
-                        <p className={`text-sm ${isDrakeMode ? "text-gray-400" : "text-gray-600"}`}>
-                            I'm currently available for internships and full-time opportunities.
+                <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
+                    {/* Big statement */}
+                    <motion.div variants={itemVariants} className="lg:col-span-7">
+                        <h2 className="text-4xl md:text-6xl font-light leading-[1.05] tracking-tight mb-6">
+                            Got messy data and an AI idea?{' '}
+                            <span className="font-medium bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
+                                Let's prove it works.
+                            </span>
+                        </h2>
+                        <p className={`text-lg max-w-xl ${muted}`}>
+                            I'm open to roles where I can ship AI systems with real customers and measure whether they hold up.
                         </p>
                     </motion.div>
-                </motion.div>
-            </div>
 
-            {/* Bottom CTA */}
-            <motion.div
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                variants={containerVariants}
-                className="text-center mt-20"
-                >
-                    <motion.div
-                        variants={itemVariants}
-                        className={`max-w-2xl mx-auto p-8 rounded-2xl border ${isDrakeMode ? "bg-gray-800/30 border-gray-700" : "bg-gray-50/50 border-gray-200"}`}>
-                            <h3 className="text-2xl font-medium mb-4">Prefer a quick call?</h3>
-                            <p className={`${isDrakeMode ? "text-gray-400" : "text-gray-600"} mb-6`}>
-                                Feel free to reach out to me via email or schedule a call below. Sometimes a convervation is worth more than a message. 
-                            </p>
-                            <motion.button
-                                whileHover={{ y: -2, scale: 1.05}}
-                                whileTap={{ scale: 0.98}}
-                                className={`px-6 py-3 rounded-full border font-medium transition-all duration-300 ${isDrakeMode ? "border-gray-600 hover:border-blue-500 hover:text-blue-400" : "border-gray-300 hover:border-blue-500 hover:text-blue-600"}`}
+                    {/* Availability */}
+                    <motion.div variants={itemVariants} className="lg:col-span-5">
+                        <div className={`rounded-2xl border p-6 backdrop-blur-xl ${glass}`}>
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                                </span>
+                                <span className="font-mono text-xs uppercase tracking-[0.2em] text-emerald-400">Available now</span>
+                            </div>
+                            <div className={`text-sm mb-3 ${muted}`}>Open to</div>
+                            <div className="flex flex-wrap gap-2">
+                                {ROLES.map((r) => (
+                                    <span key={r} className={`text-sm px-3 py-1.5 rounded-full border ${isDrakeMode ? 'border-blue-400/30 bg-blue-500/10 text-blue-100' : 'border-blue-200 bg-blue-50 text-blue-800'}`}>
+                                        {r}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Email — the main action */}
+                <motion.div variants={itemVariants} className="mb-6">
+                    <SpotlightCard
+                        theme={isDrakeMode ? 'dark' : 'light'}
+                        spotlightColor="rgba(56, 189, 248, 0.22)"
+                        className={`!p-0 !rounded-3xl border backdrop-blur-xl ${glass}`}
+                    >
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 md:p-10">
+                            <div className="min-w-0">
+                                <div className={`flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] mb-3 ${muted}`}>
+                                    <Mail size={14} className="text-blue-500" /> Email me directly
+                                </div>
+                                <button
+                                    onClick={copyEmail}
+                                    className="group text-left text-2xl sm:text-3xl md:text-4xl font-light break-all hover:text-blue-500 transition-colors"
+                                    aria-label={`Copy ${EMAIL}`}
                                 >
-                                    Schedule a Call
-                                </motion.button>
-                        </motion.div>
+                                    {EMAIL}
+                                </button>
+                            </div>
+                            <div className="flex gap-3 shrink-0">
+                                <button
+                                    onClick={copyEmail}
+                                    className={`relative inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-colors ${isDrakeMode ? 'border-white/15 hover:bg-white/10' : 'border-gray-300 hover:bg-gray-100'}`}
+                                >
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        {copied ? (
+                                            <motion.span key="ok" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="inline-flex items-center gap-2 text-emerald-400">
+                                                <Check size={16} /> Copied
+                                            </motion.span>
+                                        ) : (
+                                            <motion.span key="copy" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="inline-flex items-center gap-2">
+                                                <Copy size={16} /> Copy
+                                            </motion.span>
+                                        )}
+                                    </AnimatePresence>
+                                </button>
+                                <StarBorder
+                                    as="a"
+                                    href={`mailto:${EMAIL}`}
+                                    color="#38bdf8"
+                                    radius={999}
+                                    theme={isDrakeMode ? 'dark' : 'light'}
+                                    className="text-sm font-medium"
+                                >
+                                    <span className="inline-flex items-center gap-2 px-2">
+                                        Send email <ArrowUpRight size={16} />
+                                    </span>
+                                </StarBorder>
+                            </div>
+                        </div>
+                    </SpotlightCard>
                 </motion.div>
-        </div>
 
-        <SuccessModel 
-        showSuccess={showSuccess} 
-        setShowSuccess={setShowSuccess} 
-        isDrakeMode={isDrakeMode}
-        />
-    </section>
-        
-    
+                {/* Other channels */}
+                <motion.div variants={containerVariants} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {CHANNELS.map((c) => {
+                        const Tag = c.href ? 'a' : 'div';
+                        return (
+                            <motion.div key={c.label} variants={itemVariants} whileHover={c.href ? { y: -4 } : undefined}>
+                                <Tag
+                                    {...(c.href ? { href: c.href, target: c.href.startsWith('http') ? '_blank' : undefined, rel: 'noreferrer' } : {})}
+                                    className={`group block h-full rounded-2xl border p-5 backdrop-blur-xl transition-colors ${glass} ${c.href ? (isDrakeMode ? 'hover:border-blue-400/40' : 'hover:border-blue-400') : ''}`}
+                                >
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isDrakeMode ? 'bg-blue-500/10 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
+                                            <c.icon size={18} />
+                                        </div>
+                                        {c.href && <ArrowUpRight size={18} className={`transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${muted}`} />}
+                                    </div>
+                                    <div className={`font-mono text-[11px] uppercase tracking-wider mb-1 ${muted}`}>{c.label}</div>
+                                    <div className="font-medium mb-1 truncate">{c.value}</div>
+                                    <div className={`text-xs ${muted}`}>{c.note}</div>
+                                </Tag>
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
+            </motion.div>
+        </section>
+    );
 };
 
 export default ContactSection;

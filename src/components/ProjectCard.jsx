@@ -1,108 +1,96 @@
-import {motion} from 'framer-motion';
-import {ExternalLink} from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { FiGithub } from 'react-icons/fi';
+import SpotlightCard from './reactbits/SpotlightCard';
 
-import {FiGithub} from "react-icons/fi";
+const ProjectCard = ({ project, isDrakeMode }) => {
+    const [expanded, setExpanded] = useState(false);
+    const hasLive = project.linkUrl && project.linkUrl !== '#';
 
-
-const ProjectCard = ({project, index, isDrakeMode}) => {
     const cardVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut",
-            },
-        },
+        hidden: { opacity: 0, y: 20 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
     };
-    
-    return <motion.div
-    variants={cardVariants}
-    whileHover={{
-        y: -8,
-        transition: { duration: 0.3, ease: "easeOut" },
-    }}
-    className="group relative"
-    >
-        <div 
-        className={`rounded-2xl overflow-hidden border transition-all duration-500 ${isDrakeMode ? "bg-gray-900/50 border-gray-800 hover:border-gray-700 hover:shadow-2xl hover:shadow-blue-500/10" : "bg-white/80 border-gray-200 hover:border-gray-300 hover:shadow-2xl hover:shadow-blue-500/10"} backdrop-blur-sm`}>
-            {/* Project Image */}
-            <div className="relative overflow-hidden">
-                <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" />
 
-                {/* Featured Badge */}
-                {project.featured && (
-                    <div className="absolute top-4 left-4">
-                        <span className="bg-blue-500 text-white text-xs px-3 py-1 rounded-full font-medium">Featured</span>
-                    </div>
-                )}
+    // "lakehouse-sql-eval — Does a Semantic Layer…" → name + tagline
+    const [name, ...rest] = project.title.split(' — ');
+    const tagline = rest.join(' — ');
 
-                {/* Category Badge */}
-                <div className="absolute top-4 right-4">
-                    <span
-                    className={`text-xs px-3 py-1 rounded-full font-medium ${isDrakeMode ? "bg-gray-800/80 text-gray-300" : "bg-white/80 text-gray-700"} backdrop-blur-sm`}>
-                        {project.category}
-                    </span>
+    return (
+        <motion.div variants={cardVariants} whileHover={{ y: -6 }} transition={{ duration: 0.3 }} className="group h-full">
+            <SpotlightCard
+                theme={isDrakeMode ? 'dark' : 'light'}
+                spotlightColor="rgba(56, 189, 248, 0.2)"
+                className={`h-full flex flex-col !p-0 rounded-2xl overflow-hidden border ${isDrakeMode ? 'bg-[#060a18]/75 border-white/10' : 'bg-white/80 border-gray-200'} backdrop-blur-md`}
+            >
+                {/* Image (box matches the 800×460 card artwork, so nothing is cropped) */}
+                <div className="relative overflow-hidden aspect-[800/460] bg-[#0b1020]">
+                    <img
+                        src={project.image}
+                        alt={name}
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 </div>
 
-                {/* Hover Overlay with CTA Buttons */}
-                <motion.div
-                initial={{opacity: 0}}
-                whileHover={{opacity: 1}}
-                transition={{duration: 0.3}}
-                className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center space-x-4">
-                    {/* <motion.a 
-                    href={project.liveUrl} 
-                    initial={{opacity: 0.5, y: 20}}
-                    whileHover={{opacity: 1, y: 0, scale: 1.05}}
-                    transition={{duration: 0.3, delay: 0.1}}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-colors">
-                        <ExternalLink size={16} />
-                        <span>Live Demo</span>
-                    </motion.a> */}
-                    <motion.a 
-                    href={project.githubUrl}
-                    initial={{opacity: 0.5, y: 20}}
-                    whileHover={{opacity: 1, y: 0, scale: 1.05}}
-                    transition={{duration: 0.3, delay: 0.2}}
-                    className={`border-2 border-white text-white hover:bg-white hover:text-gray-900 px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-all`}>
-                        <FiGithub size={16} />
-                        <span>Github</span>
-                    </motion.a>
-                </motion.div>
-                
-            </div>
-
-            {/* Project Content */}
-            <div className="p-6">
-                <h3 className="text-xl font-medium mb-3 group-hover:text-blue-500 transition-colors">
-                    {project.title}
-                </h3>
-
-                <p
-                className={`text-sm leading-relaxed mb-4 ${isDrakeMode ? "text-gray-400" : "text-gray-600"}`}>
-                    {project.description}
-                </p>
-
-                {/* Tech Stack Tags */}
-                <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                        <span
-                        key={tagIndex}
-                        className={`text-xs px-3 py-1 rounded-full ${isDrakeMode ? "bg-gray-800 text-gray-300": "bg-gray-100 text-gray-700"}`}>
-                            {tag}
+                {/* Body */}
+                <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <span className="font-mono text-xs text-blue-500">{name}</span>
+                        <span className={`font-mono text-[10px] uppercase tracking-[0.15em] px-2.5 py-1 rounded-full border ${isDrakeMode ? 'border-sky-400/30 text-sky-300 bg-sky-400/5' : 'border-blue-300 text-blue-700 bg-blue-50'}`}>
+                            {project.category}
                         </span>
-                    ))}
+                    </div>
+                    <h3 className={`text-xl font-medium leading-snug mb-3 transition-colors group-hover:text-blue-500 ${isDrakeMode ? 'text-white' : 'text-gray-900'}`}>
+                        {tagline || name}
+                    </h3>
+
+                    <p className={`text-sm leading-relaxed ${expanded ? '' : 'line-clamp-4'} ${isDrakeMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {project.description}
+                    </p>
+                    <button
+                        onClick={() => setExpanded((v) => !v)}
+                        className="self-start mt-2 mb-5 font-mono text-xs uppercase tracking-wider text-blue-500 hover:text-sky-400"
+                    >
+                        {expanded ? '− Show less' : '+ Read more'}
+                    </button>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className={`text-xs px-3 py-1 rounded-full border ${isDrakeMode ? 'bg-white/[0.03] border-white/10 text-gray-300' : 'bg-gray-50 border-gray-200 text-gray-700'}`}
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="mt-auto flex gap-3">
+                        <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-colors ${isDrakeMode ? 'border-white/15 text-gray-200 hover:bg-white/10' : 'border-gray-300 text-gray-800 hover:bg-gray-100'}`}
+                        >
+                            <FiGithub size={15} /> Code
+                        </a>
+                        {hasLive && (
+                            <a
+                                href={project.linkUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors"
+                            >
+                                Live <ArrowUpRight size={15} />
+                            </a>
+                        )}
+                    </div>
                 </div>
-
-            </div>
-
-        </div>
-    </motion.div>
-}
+            </SpotlightCard>
+        </motion.div>
+    );
+};
 
 export default ProjectCard;

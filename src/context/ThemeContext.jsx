@@ -3,9 +3,9 @@ import { createContext, useEffect, useState, useContext } from "react";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({children}) => {
-    const [isDrakeMode, toggleDrakeMode] = useState(
-        localStorage.getItem("theme") || "light"
-    );
+    const [isDrakeMode, toggleDrakeMode] = useState(() => {
+        try { return localStorage.getItem("theme") || "dark"; } catch { return "dark"; }
+    });
 
     useEffect(() => {
         const root = window.document.documentElement;
@@ -14,7 +14,7 @@ export const ThemeProvider = ({children}) => {
         } else{
             root.classList.remove("dark");
         }
-        localStorage.setItem("theme", isDrakeMode);
+        try { localStorage.setItem("theme", isDrakeMode); } catch { /* storage unavailable */ }
     }, [isDrakeMode]);
 
     return(

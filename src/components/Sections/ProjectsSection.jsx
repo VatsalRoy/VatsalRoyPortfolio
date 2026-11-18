@@ -1,16 +1,10 @@
 import {useRef} from 'react';
 import {motion, useInView} from 'framer-motion';
-import {
-    ArrowUpRight,
-    Code2,
-    Globe,
-    Zap,
-    User,
-} from 'lucide-react';
 
 import {useTheme} from '../../context/ThemeContext';
 import {PROJECTS} from '../../utils/data';
 import ProjectCard from '../ProjectCard';
+import DecryptedText from '../reactbits/DecryptedText';
 import {containerVariants, itemVariants} from '../../utils/helper';
 
 
@@ -22,13 +16,7 @@ const ProjectsSection = () => {
     return <section
     id="work"
     ref={sectionRef}
-    className={`py-24 px-6 ${isDrakeMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"} relative overflow-hidden`}>
-
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-            <div className={`absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-5 ${isDrakeMode ? "bg-blue-500" : "bg-blue-400"}`} />
-            <div className={`absolute bottom-20 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-5 ${isDrakeMode ? "bg-purple-500" : "bg-purple-400"}`} />
-        </div>
+    className={`py-24 px-6 ${isDrakeMode ? "text-white" : "text-gray-900"} relative overflow-hidden`}>
 
         <div className="max-w-7xl mx-auto relative z-10">
 
@@ -40,8 +28,8 @@ const ProjectsSection = () => {
             className="text-center mb-20">
                 <motion.div
                 variants={itemVariants}
-                className={`text-sm uppercase tracking-widest ${isDrakeMode ? "text-gray-500" : "text-gray-600"} mb-4`}>
-                    Featured Work
+                className="font-mono text-xs uppercase tracking-[0.3em] text-blue-500 mb-4">
+                    <DecryptedText text="// 04 — Featured Work" animateOn="view" sequential speed={35} encryptedClassName="opacity-60" />
                 </motion.div>
 
                 <motion.h2 
@@ -53,24 +41,25 @@ const ProjectsSection = () => {
                 <motion.p
                 variants={itemVariants}
                 className={`text-lg ${isDrakeMode ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto font-light`}>
-                    A collection of projects I've worked on, showcasing my skills and experience as an AI/ML Engineer aspirant.
+                    AI systems I built, then tested to prove whether they actually work — with the numbers, confidence intervals and limitations to back them up.
                 </motion.p>
             </motion.div>
 
-            {/* Projects Grid */}
+            {/* Projects Grid: 2 large cards, then 3 smaller */}
             <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={containerVariants}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            className="grid md:grid-cols-2 lg:grid-cols-6 gap-6">
                 {
                     PROJECTS.map((project, index) => (
-                        <ProjectCard 
-                        key={project.id}
-                        project={project}
-                        index={index}
-                        isDrakeMode={isDrakeMode}
-                        />
+                        <div key={project.id} className={index < 2 ? "lg:col-span-3" : "lg:col-span-2"}>
+                            <ProjectCard
+                            project={project}
+                            large={index < 2}
+                            isDrakeMode={isDrakeMode}
+                            />
+                        </div>
                     ))
                 }
             </motion.div>

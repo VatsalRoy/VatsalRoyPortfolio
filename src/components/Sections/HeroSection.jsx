@@ -1,316 +1,199 @@
-import {
-    motion,
-    useScroll,
-    useTransform,
-} from 'framer-motion';
-import {
-    ArrowDown,
-    Mail,
-} from 'lucide-react';
-import {FiGithub, FiLinkedin} from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, Mail } from 'lucide-react';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
-import {containerVariants, itemVariants} from '../../utils/helper';
+import { containerVariants, itemVariants } from '../../utils/helper';
 import PROFILE_IMAGE from '../../assets/images/profile.jpg';
-import {FileUser} from 'lucide-react';
+
+import GradientASCII from '../reactbits/GradientASCII';
+import DecryptedText from '../reactbits/DecryptedText';
+import TiltedCard from '../reactbits/TiltedCard';
+import StarBorder from '../reactbits/StarBorder';
+
+const SOCIALS = [
+    { icon: FiGithub, href: 'https://github.com/VatsalRoy', label: 'GitHub' },
+    { icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:vatsal.roy2429@gmail.com', label: 'Email' },
+];
+
 const HeroSection = () => {
-    const {isDrakeMode} = useTheme();
-    
-    const {scrollY} = useScroll();
-    const heroY = useTransform(scrollY, [0, 500], [0, -100]);
+    const { isDrakeMode } = useTheme();
 
     const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({behavior: 'smooth'});
-        }
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     };
 
-
-    const textVariants = {
-        hidden: {opacity: 0, y: 20},
-        visible: {opacity: 1, y: 0, transition: {duration: 0.6, ease: "easeOut"},},
-    };
-
-    const imageVariants = {
-        hidden: {opacity: 0, x: 50},
-        visible: {opacity: 1, x: 0, transition: {duration: 0.5, ease: "easeOut"},},
-    };
-    
+    const muted = isDrakeMode ? 'text-gray-300' : 'text-gray-700';
+    const faint = isDrakeMode ? 'text-gray-400' : 'text-gray-500';
 
     return (
-        <div className={`min-h-screen transition-all duration-500 ${isDrakeMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"}`}>
-            
-            {/* Hero Section */}
-            <motion.section
+        <section
             id="home"
-            style={{y: heroY}}
-            className="min-h-screen flex items-center justify-center relative px-6 pt-10">
+            className={`relative min-h-screen flex items-center overflow-hidden ${isDrakeMode ? 'bg-[#03050d] text-white' : 'bg-[#f5f8ff] text-gray-900'}`}
+        >
+            {/* React Bits: Gradient ASCII background */}
+            <div className="absolute inset-0">
+                <GradientASCII
+                    shape="horizon"
+                    colors={isDrakeMode
+                        ? ['#1e3fd8', '#3b82f6', '#a5d8ff', '#38bdf8']
+                        : ['#1e3fd8', '#3b82f6', '#93c5fd', '#38bdf8']}
+                    cellSize={16}
+                    density={0.8}
+                    glow={0.25}
+                    flow={0.6}
+                    speed={0.8}
+                    gradientOpacity={isDrakeMode ? 0.85 : 0.55}
+                    lightMode={!isDrakeMode}
+                    clickEffect="wave"
+                />
+            </div>
+            {/* Readability scrim on the text side */}
+            <div
+                className={`absolute inset-0 pointer-events-none ${isDrakeMode
+                    ? 'bg-gradient-to-r from-[#03050d]/75 via-[#03050d]/25 to-transparent'
+                    : 'bg-gradient-to-r from-[#f5f8ff]/90 via-[#f5f8ff]/55 to-transparent'}`}
+            />
 
-                <div className="absolute inset-0 overflow-hidden">
-                    <motion.div animate={{scale: [1,1.1,1], rotate:[0,180,360],}}
-                    transition={{duration: 20, repeat: Infinity, ease: "linear"}}
-                    className={`absolute top-20 right-20 w-64 h-64 rounded-full blur-3xl opacity-10 ${isDrakeMode ? "bg-blue-500" : "bg-blue-400"}`} />
-
-                    <motion.div animate={{scale: [1.1,1,1.1], rotate:[360,180,0],}}
-                    transition={{duration: 25, repeat: Infinity, ease: "linear"}}
-                    className={`absolute bottom-20 left-20 w-48 h-48 rounded-full blur-3xl opacity-10 ${isDrakeMode ? "bg-purple-500" : "bg-purple-400"}`} />
-                </div>
-
-                <div className="max-w-7xl mx-auto w-full z-10 mt-20">
-                    {/* Mobile Layout - Centered */}
-                    <div className="block lg:hidden">
-                        <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={containerVariants}
-                        className="text-center">
-                            
-                            {/* Profile Image - Mobile*/}
-                            <motion.div variants={imageVariants} className="mb-8">
-                                <div className="w-32 h-32 mx-auto relative">
-                                    <motion.div 
-                                    whileHover={{scale: 1.05}}
-                                    className={`w-full h-32 rounded-2xl overflow-hidden border-4 ${isDrakeMode ? "border-gray-800" : "border-gray-300"} shadow-2xl`}>
-                                        <img src={PROFILE_IMAGE} alt="Profile" className="w-full h-full object-cover" />
-                                    </motion.div>
-                                    {/* Decorative Ring*/}
-                                    <motion.div
-                                    animate={{rotate:360}}
-                                    transition={{duration: 20, repeat: Infinity, ease: "linear"}}
-                                    className="absolute -inset-2 rounded-2xl border border-blue-500/20"
-                                    />
-                                </div>
-                            </motion.div>
-
-                            {/* Content - Mobile*/}
-                            <motion.div variants={textVariants}
-                            className={`text-sm uppercase tracking-widest ${isDrakeMode ? "text-gray-500" : "text-gray-600"} md-4`} >
-                                AI/ML Engineer
-                            </motion.div>
-
-                            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-light mb-6 leading-tight">
-                                <span className={`${isDrakeMode ? "text-white" : "text-gray-900"}`}>
-                                    Give me 
-                                </span>
-                                <span className="text-blue-500 font-medium ml-2">
-                                    a data and a tensor
-                                </span>
-                                <br />
-                                <span className={`${isDrakeMode ? "text-white" : "text-gray-900"}`}> 
-                                    - I'll reshape the world.
-                                </span>
-                            </motion.h1>
-                        
-                            <motion.p variants={itemVariants} className={`text-base md:text-lg ${isDrakeMode ? "text-gray-400" : "text-gray-600"} mb-8 max-w-xl mx-auto font-light leading-relaxed`}>
-                            I build ML and data systems that actually survive production.
-                            </motion.p>
-
-                            {/* CTA Buttons - Mobile*/}
-                            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                                
-                                <motion.button
-                                whileHover={{y: -2}}
-                                whileTap={{scale: 0.98}}
-                                onClick={() => scrollToSection('work')}
-                                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300 "
-                                >
-                                    View Work
-                                </motion.button>
-                                <motion.button
-                                whileHover={{y: -2}}
-                                whileTap={{scale: 0.98}}
-                                onClick={() => scrollToSection('contact')}
-                                className={`border ${isDrakeMode ? "border-gray-700 hover:border-gray-600 text-gray-300" : "border-gray-300 hover:gray-400 text-gray-700"} px-8 py-3 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300`} > 
-                                    Get in Touch
-                                </motion.button>
-                            </motion.div>
-
-                            {/* Social Links - Mobile*/}
-                            <motion.div variants={itemVariants} className="flex justify-center space-x-6 mb-8">
-                                {[
-                                    {icon: FiGithub, href: 'https://github.com/VatsalRoy'},
-                                    {icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/'},
-                                    {icon: Mail, href: 'mailto:vatsal.roy2429@gmail.com'},
-                                ].map((social, index) => (
-                                    <motion.a
-                                    key={index}
-                                    href={social.href}
-                                    whileHover={{y : -3,scale: 1.1}}
-                                    className={`p-3 rounded-full transition-colors ${isDrakeMode ? "text-gray-400 hover:text-white hover:bg-gray-800" : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"}`}>
-                                        <social.icon size={20} />
-                                    </motion.a>
-                                ))
-                                }
-                            </motion.div>
-
-                            {/* tech Stack - Mobile*/}
-                            <motion.div variants={itemVariants} 
-                            className="flex justify-center items-center space-x-6 text-xs uppercase tracking-widest flex-wrap">
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    Python
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    Java
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    Ruby
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    C
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    C++                          
-                                </span>
-                            </motion.div>
-                        </motion.div>
-                    </div>
-
-                {/* Desktop Layout - Split*/}
-                <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
-                    {/* Left Column - Content*/}
-                    <motion.div initial="hidden"
-                    animate="visible"
-                    variants={containerVariants}
-                    className="text-left">
-                        <motion.div variants={textVariants} 
-                        className={`text-sm uppercase tracking-widest ${isDrakeMode ? "text-gray-500" : "text-gray-600"} md-6`}>
-                            AI/ML Engineer
-                        </motion.div>
-                            
-                        <motion.h1 variants={itemVariants}
-                        className="text-5xl xl:text-7xl font-light mb-8 leading-tight">
-                            <span className={`${isDrakeMode ? "text-white" : "text-gray-900"}`}>
-                                Give me 
-                            </span>
-                            <span className="text-blue-500 font-medium ml-2">
-                                a data and a tensor
-                            </span>
-                            <br />
-                            <span className={`${isDrakeMode ? "text-white" : "text-gray-900"}`}>
-                                and I'll reshape the world.
-                            </span>
-                        </motion.h1>
-                        <motion.p variants={itemVariants} className={`text-xl ${isDrakeMode ? "text-gray-400" : "text-gray-600"} mb-12 max-w-lg font-light leading-relaxed`}>
-                        I build ML and data systems that actually survive production.
-                        </motion.p>
-
-                        {/* CTA Buttons - Desktop*/}
-                        <motion.div variants={itemVariants} className="flex gap-6 mb-8" >
-                            <motion.button
-                            whileHover={{y: -2}}
-                            whileTap={{scale: 0.98}}
-                            onClick={() => scrollToSection('work')}
-                            className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300">
-                                View Work
-                            </motion.button>
-                            <motion.button
-                            whileHover={{y: -2}}
-                            whileTap={{scale: 0.98}}
-                            onClick={() => scrollToSection('contact')}
-                            className={`border ${isDrakeMode ? "border-gray-700 hover:border-gray-600 text-gray-300" : "border-gray-300 hover:gray-400 text-gray-700"} px-8 py-4 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300`} >
-                                Get in Touch
-                            </motion.button> 
-                        </motion.div>
-                        
-                        {/* Social Links - Desktop*/}
-                        <motion.div varient={itemVariants} className="flex space-x-6 mb-12">
-                            {[
-                                {icon: FiGithub, href: 'https://github.com/VatsalRoy'},
-                                {icon: FiLinkedin, href: 'https://www.linkedin.com/in/vatsal-roy/'},
-                                {icon: Mail, href: 'mailto:vatsal.roy2429@gmail.com'},
-                            ].map((social, index) => (
-                                <motion.a
-                                key={index}
-                                href={social.href}
-                                whileHover={{y: -3, scale: 1.1}}
-                                className={`p-3 rounded-full transition-colors ${isDrakeMode ? "text-gray-400 hover:text-white hover:bg-gray-800" : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"}`}>
-                                    <social.icon size={20} />
-                                </motion.a>
-                            ))}
-                        </motion.div>
+            <div className="relative z-10 max-w-7xl mx-auto w-full px-6 pt-28 lg:pt-32 pb-24 grid lg:grid-cols-[1.25fr_0.75fr] gap-16 items-center">
+                {/* Copy */}
+                <motion.div initial="hidden" animate="visible" variants={containerVariants} className="text-center lg:text-left">
+                    {/* Portrait — mobile & tablet (Tilted Card, smaller) */}
+                    <motion.div variants={itemVariants} className="lg:hidden flex justify-center mb-8">
+                        <TiltedCard
+                            imageSrc={PROFILE_IMAGE}
+                            altText="Vatsal Roy"
+                            containerHeight="250px"
+                            containerWidth="200px"
+                            imageHeight="250px"
+                            imageWidth="200px"
+                            rotateAmplitude={12}
+                            scaleOnHover={1.04}
+                            showTooltip={false}
+                            flipOnClick={false}
+                            radius={24}
+                            glare={0.35}
+                        />
                     </motion.div>
 
-                    {/* Right Column - Profile Image*/}
                     <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={imageVariants} 
-                    className="flex justify-center lg:justify-end">
-                        <div className="relative">
-                            {/* Tech Stack - Desktop*/}
-                            <motion.div 
-                            variants={itemVariants}
-                            className="flex items-center space-x-8 text-xs uppercase tracking-widest absolute -top-16 left-1/2 transform -translate-x-1/2">
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    Python
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    Java                   </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    Ruby
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    C
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-700 " : "text-gray-400"}>
-                                    .
-                                </span>
-                                <span className={isDrakeMode ? "text-gray-600 " : "text-gray-500"}>
-                                    C++
-                                </span>
-                            </motion.div>
-                            <motion.div 
-                            whileHover={{scale: 1.05}}
-                            className={`w-80 h-96 rounded-3xl overflow-hidden border-4 ${isDrakeMode ? "border-gray-800" : "border-gray-300"} shadow-2xl`}>
-                                <img src={PROFILE_IMAGE} alt="Profile" className="2-full h-full object-cover" />
-                            </motion.div>
-
-                            {/* Decorative Ring*/}
-                            <motion.div 
-                            animate={{rotate:360}}
-                            transition={{duration: 20, repeat: Infinity, ease: "linear"}}
-                            className="absolute -inset-4 rounded-3xl border border-blue-500/20" />
-                            <motion.div 
-                            animate={{rotate:-360}}
-                            transition={{duration: 25, repeat: Infinity, ease: "linear"}}
-                            className="absolute -inset-8 rounded-3xl border border-purple-500/10" />
-                        </div>
+                        variants={itemVariants}
+                        className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 mb-8 font-mono text-xs uppercase tracking-[0.2em] backdrop-blur-md ${isDrakeMode ? 'border-blue-400/30 bg-blue-500/10 text-blue-200' : 'border-blue-500/30 bg-white/60 text-blue-700'}`}
+                    >
+                        <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                        </span>
+                        Open to FDE · AI · ML Engineer roles
                     </motion.div>
-                </div>
 
+                    <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl xl:text-6xl font-light leading-[1.08] mb-8 tracking-tight">
+                        <DecryptedText
+                            text="Most LLM demos look great"
+                            animateOn="view"
+                            sequential
+                            speed={30}
+                            revealDirection="start"
+                            useOriginalCharsOnly
+                            parentClassName="block"
+                            encryptedClassName="text-blue-400/70"
+                        />
+                        <DecryptedText
+                            text="until someone checks the numbers."
+                            animateOn="view"
+                            sequential
+                            speed={30}
+                            revealDirection="start"
+                            useOriginalCharsOnly
+                            parentClassName="block font-medium bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-300 bg-clip-text text-transparent"
+                            className="text-transparent"
+                            encryptedClassName="text-blue-400/70"
+                        />
+                    </motion.h1>
 
-                </div>
-                {/* Scroll Indicator - Mobile*/}
-                <motion.div animate={{y: [0, 8, 0] }}
-                transition={{duration: 2, repeat: Infinity}}
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-                >
-                    <ArrowDown size={20} className={`${isDrakeMode ? "text-gray:600" : "text-gray-400"}`}/>
+                    <motion.p variants={itemVariants} className={`text-lg md:text-xl font-light leading-relaxed max-w-xl mx-auto lg:mx-0 mb-10 ${muted}`}>
+                        I'm <span className={isDrakeMode ? 'text-white font-medium' : 'text-gray-900 font-medium'}>Vatsal Roy</span>, an AI/ML and Forward Deployed Engineer in New York.
+                        I build AI systems, then prove whether they actually work.
+                    </motion.p>
+
+                    <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
+                        <StarBorder
+                            as="button"
+                            onClick={() => scrollToSection('work')}
+                            color="#38bdf8"
+                            radius={999}
+                            theme={isDrakeMode ? 'dark' : 'light'}
+                            className="text-sm uppercase tracking-widest font-medium"
+                        >
+                            <span className="inline-flex items-center gap-2 px-3 py-1">
+                                View Work <ArrowUpRight size={16} />
+                            </span>
+                        </StarBorder>
+                        <motion.button
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => scrollToSection('contact')}
+                            className={`px-8 py-4 rounded-full text-sm uppercase tracking-widest font-medium border backdrop-blur-md transition-colors ${isDrakeMode ? 'border-white/15 bg-white/5 text-gray-200 hover:bg-white/10' : 'border-gray-300 bg-white/60 text-gray-800 hover:bg-white'}`}
+                        >
+                            Get in Touch
+                        </motion.button>
+                    </motion.div>
+
+                    <motion.div variants={itemVariants} className="flex justify-center lg:justify-start gap-3">
+                        {SOCIALS.map((s) => (
+                            <motion.a
+                                key={s.label}
+                                href={s.href}
+                                target={s.href.startsWith('http') ? '_blank' : undefined}
+                                rel="noreferrer"
+                                aria-label={s.label}
+                                whileHover={{ y: -3 }}
+                                className={`p-3 rounded-full border backdrop-blur-md transition-colors ${isDrakeMode ? 'border-white/10 text-gray-300 hover:text-white hover:bg-white/10' : 'border-gray-200 bg-white/60 text-gray-600 hover:text-gray-900'}`}
+                            >
+                                <s.icon size={18} />
+                            </motion.a>
+                        ))}
+                    </motion.div>
                 </motion.div>
-            </motion.section>
-        </div>
-    )
-}
+
+                {/* Portrait — desktop (React Bits: Tilted Card) */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    className="hidden lg:flex flex-col items-center"
+                >
+                    <TiltedCard
+                        imageSrc={PROFILE_IMAGE}
+                        altText="Vatsal Roy"
+                        containerHeight="420px"
+                        containerWidth="340px"
+                        imageHeight="420px"
+                        imageWidth="340px"
+                        rotateAmplitude={10}
+                        scaleOnHover={1.04}
+                        showTooltip={false}
+                        flipOnClick={false}
+                        radius={28}
+                        glare={0.35}
+                    />
+                    <div className={`mt-6 font-mono text-xs uppercase tracking-[0.25em] ${faint}`}>
+                        Python · Databricks · LangGraph · PyTorch
+                    </div>
+                </motion.div>
+            </div>
+
+            <motion.button
+                onClick={() => scrollToSection('about')}
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                aria-label="Scroll to About"
+                className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-10 ${faint}`}
+            >
+                <ArrowDown size={20} />
+            </motion.button>
+        </section>
+    );
+};
 
 export default HeroSection;
