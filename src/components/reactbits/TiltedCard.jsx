@@ -533,7 +533,7 @@ const TiltedCard = ({
           '--tc-glare-rgb': glareRgb
         }}
       >
-        <div className="tilted-card__face tilted-card__front absolute inset-0 isolate overflow-hidden rounded-[var(--tc-radius)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
+        <div className="tilted-card__face tilted-card__front absolute inset-0 isolate overflow-hidden rounded-[var(--tc-radius)] [clip-path:inset(0_round_var(--tc-radius))] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]">
           {imageSrc && (
             <img
               className="pointer-events-none absolute block max-w-none object-cover"
@@ -568,7 +568,7 @@ const TiltedCard = ({
         </div>
         {backContent && (
           <div
-            className="tilted-card__face tilted-card__back absolute inset-0 isolate overflow-hidden rounded-[var(--tc-radius)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)]"
+            className="tilted-card__face tilted-card__back absolute inset-0 isolate overflow-hidden rounded-[var(--tc-radius)] [clip-path:inset(0_round_var(--tc-radius))] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)]"
             aria-hidden={!isFlipped}
           >
             {backContent}
